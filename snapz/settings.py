@@ -11,7 +11,7 @@ MODE = config("MODE", default="dev")
 SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG', default=False, cast=bool)
 # development
-if config('MODE') == "prod":
+if config('MODE') == "dev":
    DATABASES = {
        'default': {
            'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -85,14 +85,6 @@ WSGI_APPLICATION = 'snapz.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'photocanva',
-        'USER':'alex',
-        'PASSWORD':'aaronmichelle',
-    }
-}
 
 
 # Password validation
