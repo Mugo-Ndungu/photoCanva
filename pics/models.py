@@ -1,65 +1,112 @@
 from django.db import models
 import datetime as dt
+import pyperclip
 
 # Create your models here.
-
-
-class User(models.Model):
-    first_name = models.CharField(max_length=30)
-    last_name = models.CharField(max_length=30)
-    email = models.EmailField()
-
-    def __str__(self):
-        return self.first_name
-
-    class Meta:
-        ordering = ['first_name']
-
-    def save_user(self):
-        self.save()
-
-
-class tags(models.Model):
-    name = models.CharField(max_length=30)
-
-    def __str__(self):
-        return self.name
-
-
 class Location(models.Model):
-    nairobi = models.CharField(max_length=30)
-    thika = models.CharField(max_length=30)
-    mombasa = models.CharField(max_length=30)
-    nakuru = models.CharField(max_length=30)
-    naivasha = models.CharField(max_length=30)
+        """
+        This is the class where we will create locations
+        """
+        name = models.CharField(max_length = 30)
 
+        def save_location(self):
+            """
+            This is the function that we will use to save the instance of this class
+            """
+            self.save()
+
+        def delete_location(self):
+            """
+            This is the method to delete the instance
+            """
+            self.delete()
+
+        def update_location(self,field,val):
+            """
+            This is the method to update the instance
+            """
+            Location.objects.get(id = self.id).update(field = val)
+
+        def __str__(self):
+            return self.name
 
 class Category(models.Model):
-    food = models.CharField(max_length=30)
-    travel = models.CharField(max_length=30)
-    party = models.CharField(max_length=30)
-    memes = models.CharField(max_length=30)
-    architecture = models.CharField(max_length=30)
+        """
+        This is the class where we will create categories
+        """
+        name = models.CharField(max_length = 30)
+        def save_category(self):
+            """
+            This is the function that we will use to save the instance of this class
+            """
+            self.save()
 
+        def delete_category(self):
+            """
+            This is the method to delete the instance
+            """
+            Category.objects.get(id = self.id).delete()
 
+        def update_category(self,field,val):
+            """
+            This is the method to update the instance
+            """
+            Category.objects.get(id = self.id).update(field = val)
+
+        def __str__(self):
+            return self.name
 class Pics(models.Model):
-    title = models.CharField(max_length=60)
-    post = models.TextField()
-    location = models.ForeignKey(Location)
-    category = models.ForeignKey(Category)
-    tags = models.ManyToManyField(tags)
-    pub_date = models.DateTimeField(auto_now_add=True)
+        image_url = models.ImageField(upload_to="images/")
+        name = models.CharField(max_length = 30)
+        description = models.TextField()
+        location = models.ForeignKey(Location)
+        category = models.ForeignKey(Category)
 
-    def __str__(self):
-        return self.title
+        def save_image(self):
+            """
+            This is the function that we will use to save the instance of this class
+            """
+            self.save()
 
-    @classmethod
-    def todays_pics(cls):
-        today = dt.date.today()
-        pics = cls.objects.filter(pub_date__date = today)
-        return pics
+        def delete_image(self):
+            """admin.site.register(Category)
+admin.site.register(Location)
+admin.site.register(Pics)
 
-    @classmethod
-    def days_pics(cls,date):
-        pics = cls.objects.filter(pub_date__date = date)
-        return pics
+            This is the function that we will use to delete the instance of this class
+            """
+            Pics.objects.get(id = self.id).delete()
+
+        def update_image(self,val):
+            """
+            This is the method to update the instance
+            """
+            Pics.objects.filter(id = self.id).update(name = val)
+
+        @classmethod
+        def get_image_by_id(cls,image_id):
+            """
+            This is the method to get a specific image
+            """
+            return cls.objects.get(id = image_id)
+
+        @classmethod
+        def get_pics(cls):
+            return cls.objects.all()
+
+
+        @classmethod
+        def search_by_category(cls,category):
+                photo = Category.objects.filter(name__icontains = category)[0]
+                return  cls.objects.filter(category_id = photo.id)
+
+        @classmethod
+        def filter_by_location(cls,location):
+            """
+            This is the method to get images taken in a certain location
+            """
+            the_location = Location.objects.get(name = location)
+            return cls.objects.filter(location_id = the_location.id)
+
+        def __str__(self):
+            return self.name

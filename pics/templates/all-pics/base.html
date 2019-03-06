@@ -5,15 +5,16 @@
 
 <head>
     <meta charset="utf-8">
-
     {% if title %}
-    <title>Moringa Tribune - {{title}}</title>
+    <title>SNAPZ - {{title}}</title>
     {% else %}
-    <title> Moringa Tribune </title>
+    <title> SNAPZ </title>
     {% endif %}
 
     {% block styles %}
     {% bootstrap_css %}
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+        crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'css/basepics.css' %}">
     {% endblock %}
 
@@ -22,7 +23,18 @@
 <body>
     {% include "navbar.html" %}
 
-    {% block content %} <h1 class="text-center">News for {{date|date:"l d-F Y"}}</h1> {%endblock%}
+    {% block content %}
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container disp">
+            <div class="col-md-12">
+                <h1 class="text-center display-2">Posts for {{date|date:"l d-F Y"}}</h1>
+                <p class="lead">
+                    <a href="#" role="button" class=" btn-primary btn btn-lg">Post Pic</a>
+                </p>
+            </div>
+        </div>
+    </div>
+    {%endblock%}
 
     {% block scripts %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

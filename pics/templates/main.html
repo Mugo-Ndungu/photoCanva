@@ -1,0 +1,71 @@
+{% load bootstrap4%}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{{title}}</title>
+    {% block styles%}
+    {% bootstrap_css %}
+    <link rel="stylesheet" href="../../static/css/locations.css">
+    <link href="https://fonts.googleapis.com/css?family=Maven+Pro" rel="stylesheet">
+    {% endblock %}
+</head>
+
+<body>
+    {% include "navbar.html" %}
+    <div id="locations" style="padding-top:25px;">
+        <div class="container">
+            <div class="row">
+                <div class=" col-xs-12 col-sm-12 col-md-3" style="margin-right:25px;">
+                    <img src="/static/images/paris.jpeg" alt="" style="margin-right:25px; width:300px;">
+                    <a href="{% url 'locations' 'Paris'%}">
+                        <h3 class="">Paris</h3>
+                    </a>
+                </div>
+                <div class=" col-xs-12 col-sm-12 col-md-3" style="margin-right:25px;">
+                    <img src="/static/images/belgium.jpeg" alt="" style="margin-right:25px; width:300px;">
+                    <a href="{% url 'locations' 'Belgium' %}">
+                        <h3 class="">Belgium</h3>
+                    </a>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-3" style="margin-right:25px;">
+                    <img class="location-img" src="/static/images/lagos.jpeg" alt="" style="margin-right:25px;">
+                    <a href="{% url 'locations' 'Lagos'%}">
+                        <h3 class="">Lagos</h3>
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-3" style="margin-right:25px;">
+                    <img src="/static/images/london.jpeg" alt="" style="margin-right:35px;">
+                    <a href="{% url 'locations' 'London'%}">
+                        <h3 class="">London</h3>
+                    </a>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-3" style="margin-right:25px;">
+                    <img src="/static/images/accrajpeg.jpeg" alt="" style="size:100%;" style="margin-right:25px;">
+                    <a href="{% url 'locations' 'Accra'%}">
+                        <h3 class="">Accra</h3>
+                    </a>
+                </div>
+
+                <div class="col-xs-12 col-sm-12 col-md-3" style="margin-right:25px;">
+                    <img src="/static/images/sydney.jpeg" alt="" style="margin-right:25px;">
+                    <a href="{% url 'locations' 'sydney'%}">
+                        <h3 class="">Sydney</h3>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% block scripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    {% bootstrap_javascript %}
+    {% endblock %}
+</body>
+
+</html>
