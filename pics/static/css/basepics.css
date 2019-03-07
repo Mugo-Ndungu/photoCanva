@@ -9,7 +9,7 @@ body{
 }
 
 .jumbotron {
-    height: 400px;
+    height: 300px;
 }
 
 .lead a {
@@ -69,4 +69,22 @@ body{
 
 .search button:focus {
     outline: 0;
+}
+.navbar ul li{
+    display: flex;
+    text-decoration: none;
+    list-style: none;
+    color: #fff;
+}
+.navbar a{
+    margin-left: 10px;
+    color:white;
+    list-style: none;
+    text-decoration: none;
+}
+.navbar a:hover{
+    background-color: #444;
+    color: #fff;
+    padding: 10px;
+    border-radius: 13px;
 }
